@@ -39,3 +39,18 @@ uvicorn app.main:app --reload
 ```bash
 pytest
 ```
+
+## 数据库迁移
+
+Alembic 从 `.env` 读取 `DATABASE_URL`。创建新 migration 后应先检查生成内容，
+再应用到数据库：
+
+```bash
+alembic upgrade head
+```
+
+查看数据库当前 revision：
+
+```bash
+alembic current
+```
