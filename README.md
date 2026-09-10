@@ -29,6 +29,13 @@ uvicorn app.main:app --reload
 
 ## 运行测试
 
+数据库测试需要本机 PostgreSQL 正在运行，且已创建数据库和应用用户。
+在项目根目录的 `.env` 中设置 `DATABASE_URL`，使用
+`postgresql+psycopg://<username>:<password>@localhost:5432/mini_evalnow` 格式。
+请替换占位符，并对用户名和密码中的 URL 特殊字符进行百分号编码。
+`.env` 已被 Git 忽略，不要提交数据库密码。
+数据库测试通过 SQLAlchemy Session 执行 `SELECT 1`，不会创建表。
+
 ```bash
 pytest
 ```
