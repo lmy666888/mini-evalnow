@@ -5,6 +5,7 @@ from alembic import context
 from app.database import DATABASE_URL, engine
 from app.models.base import Base
 from app.models.feedback_session import FeedbackSession
+from app.models.submission import Submission
 from app.models.user import User
 
 
@@ -13,7 +14,7 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Importing User registers the users table with Base.metadata.
+# Importing the models above registers their tables with Base.metadata.
 target_metadata = Base.metadata
 
 
