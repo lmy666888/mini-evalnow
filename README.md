@@ -54,3 +54,16 @@ alembic upgrade head
 ```bash
 alembic current
 ```
+
+## JWT 配置
+
+认证接口需要在 `.env` 中设置以下变量：
+
+```dotenv
+JWT_SECRET_KEY=<strong-random-secret>
+JWT_ALGORITHM=HS256
+JWT_ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+
+`JWT_SECRET_KEY` 应使用独立的强随机值，不要提交到 Git。支持的算法为
+`HS256`、`HS384` 和 `HS512`，密钥至少应分别为 32、48 和 64 bytes。

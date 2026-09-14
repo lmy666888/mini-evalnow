@@ -7,3 +7,5 @@ psycopg[binary]
 python-dotenv
 alembic
 argon2-cffi
+PyJWT
+email-validator
