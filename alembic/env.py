@@ -4,6 +4,7 @@ from alembic import context
 
 from app.database import DATABASE_URL, engine
 from app.models.base import Base
+from app.models.feedback_session import FeedbackSession
 from app.models.user import User
 
 
