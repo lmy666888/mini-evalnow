@@ -1,3 +1,5 @@
+from collections.abc import Callable
+
 import jwt
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -96,6 +98,20 @@ def get_current_user(
     if user is None:
         raise authentication_error()
     return user
+
+
+def require_roles(*allowed_roles: UserRole) -> Callable[..., User]:
+    allowed_role_set = frozenset(allowed_roles)
+
+    def check_role(current_user: User = Depends(get_current_user)) -> User:
+        if current_user.role not in allowed_role_set:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Forbidden",
+            )
+        return current_user
+
+    return check_role
 
 
 @router.get("/me", response_model=UserResponse)
